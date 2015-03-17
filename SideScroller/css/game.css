@@ -1,0 +1,13 @@
+﻿#canvas{
+    border: 1px dashed black;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 5%;
+    display: block;
+    width: 800px;
+    height: 600px;
+}
