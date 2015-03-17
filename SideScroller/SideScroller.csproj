@@ -70,6 +70,7 @@
     <Content Include="assets\images\helicopter.png" />
     <Content Include="assets\images\background-first.png" />
     <Content Include="assets\images\background-second.png" />
+    <Content Include="assets\images\treasure.png" />
     <Content Include="css\game.css" />
     <Content Include="index.html" />
     <Content Include="Scripts\lib\easeljs-0.8.0.min.js" />
@@ -86,10 +87,11 @@
   <ItemGroup>
     <Folder Include="assets\audio\" />
     <Folder Include="assets\fonts\" />
-    <Folder Include="Scripts\objects\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\game.ts" />
+    <TypeScriptCompile Include="Scripts\objects\player.ts" />
+    <TypeScriptCompile Include="Scripts\objects\treasure.ts" />
     <TypeScriptCompile Include="Scripts\typings\createjs-lib\createjs-lib.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\easeljs\easeljs.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\preloadjs\preloadjs.d.ts" />
