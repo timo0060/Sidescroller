@@ -1,8 +1,8 @@
-/// <reference path="typings/createjs-lib/createjs-lib.d.ts" />
 /// <reference path="typings/easeljs/easeljs.d.ts" />
+/// <reference path="typings/createjs-lib/createjs-lib.d.ts" />
 /// <reference path="typings/tweenjs/tweenjs.d.ts" />
-/// <reference path="typings/soundjs/soundjs.d.ts" />
 /// <reference path="typings/preloadjs/preloadjs.d.ts" />
+/// <reference path="typings/soundjs/soundjs.d.ts" />
 /// <reference path="objects/treasure.ts" />
 /// <reference path="objects/player.ts" />
 //global variables

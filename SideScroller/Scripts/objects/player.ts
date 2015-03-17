@@ -1,6 +1,6 @@
 ﻿module objects {
 
-    export class Player extends createjs.Bitmap{
+    export class Player extends createjs.Bitmap {
 
         //Public Variables
         public width;
@@ -11,13 +11,13 @@
 
         constructor() {
             super(assetLoader.getResult("helicopter"));
-            
+
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
 
             this.regX = this.width * 0.5;
             this.regY = this.height * 0.5;
-                      
+
             this.x = 95;
 
         }
@@ -26,7 +26,7 @@
 
         public update() {
             this.y = stage.mouseY;
-            
+
             this._checkBounds();
         }
 
