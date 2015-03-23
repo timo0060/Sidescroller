@@ -5,6 +5,7 @@
         //PUBLIC VARIABLES
         public width: number;
         public height: number;
+        public isColliding: boolean = false;
 
         //PRIVATE VARIABLES
         private _dx = 5;

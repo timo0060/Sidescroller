@@ -5,6 +5,7 @@
         //PUBLIC VARIABLES
         public width: number;
         public height: number;
+        public isColliding: boolean = false;
 
         //PRIVATE VARIABLES
         private _dx;
@@ -23,7 +24,7 @@
             this.regY = this.height * 0.5;
 
             this._dx = Math.floor((Math.random() * 5) + 10);
-            this._dy = Math.floor((Math.random() * 3) - 2);
+            this._dy = Math.floor((Math.random() * 5) - 2);
 
             this._reset();
         }
@@ -45,7 +46,7 @@
             this.x = Math.floor(Math.random() * 1000) + (800 + this.width);
 
             this._dx = Math.floor((Math.random() * 5) + 10);
-            this._dy = Math.floor((Math.random() * 3)  - 2);
+            this._dy = Math.floor((Math.random() * 5)  - 2);
         }
 
         //Checks to see if the enemy is within the stage

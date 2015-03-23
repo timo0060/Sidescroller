@@ -11,6 +11,7 @@ var objects;
         //CONSTRUCTOR --------------------------------------------------------------------------------------------------
         function Treasure() {
             _super.call(this, assetLoader.getResult("treasure"));
+            this.isColliding = false;
             //PRIVATE VARIABLES
             this._dx = 5;
             this.width = this.getBounds().width;

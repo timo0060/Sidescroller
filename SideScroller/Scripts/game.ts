@@ -63,6 +63,51 @@ function setStats() {
     stats.domElement.style.top = '0px';
     document.body.appendChild(stats.domElement);
 }
+//Calculates the distance between two points
+function getDistance(p1: createjs.Point, p2: createjs.Point):number {
+
+    return Math.floor(Math.sqrt(Math.pow((p2.x - p1.x), 2) + Math.pow((p2.y - p1.y), 2)));
+}
+
+function playerAndTreasure() {
+    var p1: createjs.Point = new createjs.Point();
+    var p2: createjs.Point = new createjs.Point();
+
+    p1.x = helicopter.x;
+    p1.y = helicopter.y;
+
+    p2.x = treasure.x;
+    p2.y = treasure.y;
+
+    if (getDistance(p1, p2) < ((helicopter.height * 0.5) + (treasure.height * 0.5))) {
+        if (!treasure.isColliding) {
+            console.log("Collision");
+            treasure.isColliding = true;
+        }
+    } else {
+        treasure.isColliding = false;
+    }
+}
+
+function playerAndEnemy(enemy:objects.Enemy) {
+    var p1: createjs.Point = new createjs.Point();
+    var p2: createjs.Point = new createjs.Point();
+
+    p1.x = helicopter.x;
+    p1.y = helicopter.y;
+
+    p2.x = enemy.x;
+    p2.y = enemy.y;
+
+    if (getDistance(p1, p2) < ((helicopter.height * 0.5) + (enemy.height * 0.5))) {
+        if (!enemy.isColliding) {
+            console.log("Collision");
+            enemy.isColliding = true;
+        }
+    } else {
+        enemy.isColliding = false;
+    }
+}
 
 function gameLoop() {
     stats.begin(); //Begin metering
@@ -73,10 +118,12 @@ function gameLoop() {
     
     for (var enemy = 3; enemy > 0; enemy--){
         enemies[enemy].update();
+        playerAndEnemy(enemies[enemy]);
     }
 
     readdObjects();
     stage.update();
+    playerAndTreasure();
 
     stats.end(); // End metering
 }
