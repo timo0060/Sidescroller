@@ -1,30 +1,15 @@
 ﻿module objects {
 
-    export class Enemy extends createjs.Bitmap {
+    export class Enemy extends objects.GameObject {
 
-        //PUBLIC VARIABLES
-        public width: number;
-        public height: number;
-        public isColliding: boolean = false;
-
-        //PRIVATE VARIABLES
-        private _dx;
-        private _dy;
 
 
         //CONSTRUCTOR --------------------------------------------------------------------------------------------------
 
         constructor() {
-            super(assetLoader.getResult("enemy"));
+            super("enemy");
 
-            this.width = this.getBounds().width;
-            this.height = this.getBounds().height;
-
-            this.regX = this.width * 0.5;
-            this.regY = this.height * 0.5;
-
-            this._dx = Math.floor((Math.random() * 5) + 10);
-            this._dy = Math.floor((Math.random() * 5) - 2);
+            //Add sound here---- See treasure for example
 
             this._reset();
         }

@@ -1,26 +1,17 @@
 ﻿module objects {
 
-    export class Treasure extends createjs.Bitmap {
-
-        //PUBLIC VARIABLES
-        public width: number;
-        public height: number;
-        public isColliding: boolean = false;
-
-        //PRIVATE VARIABLES
-        private _dx = 5;
+    export class Treasure extends objects.GameObject {
 
 
         //CONSTRUCTOR --------------------------------------------------------------------------------------------------
 
         constructor() {
-            super(assetLoader.getResult("treasure"));
+            super("treasure");
 
-            this.width = this.getBounds().width;
-            this.height = this.getBounds().height;
+            this._dx = 5;
 
-            this.regX = this.width * 0.5;
-            this.regY = this.height * 0.5;
+            //Put sound here, Example (Declare audio in assetManager):
+            //this.soundString="yay";
 
             this._reset();
         }

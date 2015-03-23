@@ -4,6 +4,7 @@
 /// <reference path="typings/preloadjs/preloadjs.d.ts" />
 /// <reference path="typings/stats/stats.d.ts" />
 /// <reference path="typings/soundjs/soundjs.d.ts" />
+/// <reference path="objects/gameobject.ts" />
 /// <reference path="objects/enemy.ts" />
 /// <reference path="objects/treasure.ts" />
 /// <reference path="objects/player.ts" />

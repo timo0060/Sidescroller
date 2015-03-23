@@ -6,34 +6,39 @@ var __extends = this.__extends || function (d, b) {
 };
 var objects;
 (function (objects) {
-    var Treasure = (function (_super) {
-        __extends(Treasure, _super);
+    var Enemy = (function (_super) {
+        __extends(Enemy, _super);
         //CONSTRUCTOR --------------------------------------------------------------------------------------------------
-        function Treasure() {
-            _super.call(this, "treasure");
-            this._dx = 5;
-            //Put sound here, Example (Declare audio in assetManager):
-            //this.soundString="yay";
+        function Enemy() {
+            _super.call(this, "enemy");
+            //Add sound here---- See treasure for example
             this._reset();
         }
         //PUBLIC METHODS -----------------------------------------------------------------------------------------------
-        Treasure.prototype.update = function () {
+        Enemy.prototype.update = function () {
             this.x -= this._dx;
+            this.y -= this._dy;
             this._checkBounds();
         };
         //PRIVATE METHODS
-        Treasure.prototype._reset = function () {
+        Enemy.prototype._reset = function () {
             //Set treasure to start at random y, outside of canvas
             this.y = Math.floor(Math.random() * 450) + (this.height * 0.5);
-            this.x = 800 + this.width;
+            this.x = Math.floor(Math.random() * 1000) + (800 + this.width);
+            this._dx = Math.floor((Math.random() * 5) + 10);
+            this._dy = Math.floor((Math.random() * 5) - 2);
         };
-        Treasure.prototype._checkBounds = function () {
-            if ((this.x + this.width) < 0) {
+        //Checks to see if the enemy is within the stage
+        Enemy.prototype._checkBounds = function () {
+            if ((this.x + this.width) < 0 || (this.y + this.height) < 0) {
                 this._reset();
             }
+            if (this.y > 450) {
+                this._dy = 0;
+            }
         };
-        return Treasure;
+        return Enemy;
     })(objects.GameObject);
-    objects.Treasure = Treasure;
+    objects.Enemy = Enemy;
 })(objects || (objects = {}));
-//# sourceMappingURL=treasure.js.map
+//# sourceMappingURL=enemy.js.map

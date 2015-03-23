@@ -92,6 +92,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\game.ts" />
     <TypeScriptCompile Include="Scripts\objects\enemy.ts" />
+    <TypeScriptCompile Include="Scripts\objects\gameObject.ts" />
     <TypeScriptCompile Include="Scripts\objects\player.ts" />
     <TypeScriptCompile Include="Scripts\objects\treasure.ts" />
     <TypeScriptCompile Include="Scripts\typings\createjs-lib\createjs-lib.d.ts" />

@@ -5,6 +5,8 @@
 /// <reference path="typings/stats/stats.d.ts" />
 /// <reference path="typings/soundjs/soundjs.d.ts" />
 
+/// <reference path="objects/gameobject.ts" />
+
 /// <reference path="objects/enemy.ts" />
 /// <reference path="objects/treasure.ts" />
 /// <reference path="objects/player.ts" />
@@ -69,43 +71,23 @@ function getDistance(p1: createjs.Point, p2: createjs.Point):number {
     return Math.floor(Math.sqrt(Math.pow((p2.x - p1.x), 2) + Math.pow((p2.y - p1.y), 2)));
 }
 
-function playerAndTreasure() {
+function checkCollision(collider:objects.GameObject) {
     var p1: createjs.Point = new createjs.Point();
     var p2: createjs.Point = new createjs.Point();
 
     p1.x = helicopter.x;
     p1.y = helicopter.y;
 
-    p2.x = treasure.x;
-    p2.y = treasure.y;
+    p2.x = collider.x;
+    p2.y = collider.y;
 
-    if (getDistance(p1, p2) < ((helicopter.height * 0.5) + (treasure.height * 0.5))) {
-        if (!treasure.isColliding) {
+    if (getDistance(p1, p2) < ((helicopter.height * 0.5) + (collider.height * 0.5))) {
+        if (!collider.isColliding) {
             console.log("Collision");
-            treasure.isColliding = true;
+            collider.isColliding = true;
         }
     } else {
-        treasure.isColliding = false;
-    }
-}
-
-function playerAndEnemy(enemy:objects.Enemy) {
-    var p1: createjs.Point = new createjs.Point();
-    var p2: createjs.Point = new createjs.Point();
-
-    p1.x = helicopter.x;
-    p1.y = helicopter.y;
-
-    p2.x = enemy.x;
-    p2.y = enemy.y;
-
-    if (getDistance(p1, p2) < ((helicopter.height * 0.5) + (enemy.height * 0.5))) {
-        if (!enemy.isColliding) {
-            console.log("Collision");
-            enemy.isColliding = true;
-        }
-    } else {
-        enemy.isColliding = false;
+        collider.isColliding = false;
     }
 }
 
@@ -118,12 +100,12 @@ function gameLoop() {
     
     for (var enemy = 3; enemy > 0; enemy--){
         enemies[enemy].update();
-        playerAndEnemy(enemies[enemy]);
+        checkCollision(enemies[enemy]);
     }
 
     readdObjects();
     stage.update();
-    playerAndTreasure();
+    checkCollision();
 
     stats.end(); // End metering
 }
