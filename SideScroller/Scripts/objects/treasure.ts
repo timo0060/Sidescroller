@@ -28,8 +28,8 @@
         //PRIVATE METHODS
         private _reset() {
             //Set treasure to start at random y, outside of canvas
-            this.y = Math.floor(Math.random() * 450) + (this.height * 0.5);
-            this.x = 800 + this.width;
+            this.y = Math.floor(Math.random() * constants.TREE_LINE) + (this.height * 0.5);
+            this.x = constants.SCREEN_WIDTH + this.width;
         }
 
         private _checkBounds() {

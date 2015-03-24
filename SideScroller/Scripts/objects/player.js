@@ -21,7 +21,7 @@ var objects;
         };
         //PRIVATE METHODS
         Player.prototype._checkBounds = function () {
-            if (stage.mouseY > 450) {
+            if (stage.mouseY > constants.TREE_LINE) {
                 this.y = 450;
             }
             if ((this.y - (this.height * 0.5)) < 5) {

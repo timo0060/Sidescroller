@@ -5,11 +5,13 @@
 /// <reference path="typings/stats/stats.d.ts" />
 /// <reference path="typings/soundjs/soundjs.d.ts" />
 
+/// <reference path="constants.ts" />
 /// <reference path="objects/gameobject.ts" />
 /// <reference path="objects/background.ts" />
 /// <reference path="objects/enemy.ts" />
 /// <reference path="objects/treasure.ts" />
 /// <reference path="objects/player.ts" />
+/// <reference path="objects/button.ts" />
 
 
 //global variables
@@ -25,7 +27,7 @@ var background: objects.Background;
 var enemies: objects.Enemy[] = [];
 
 
-
+//Look at the slot machine Button object to put background the way I want (getImage)
 
 var assetLoader: createjs.LoadQueue;
 //Define the manifest with all the game assets
@@ -97,7 +99,7 @@ function gameLoop() {
     helicopter.update();
     treasure.update();
     
-    for (var enemy = 3; enemy > 0; enemy--){
+    for (var enemy = constants.ENEMY_NUM; enemy > 0; enemy--){
         enemies[enemy].update();
         checkCollision(enemies[enemy]);
     }
@@ -121,7 +123,7 @@ function main() {
     treasure = new objects.Treasure();
     game.addChild(treasure);
 
-    for (var enemy = 3; enemy > 0; enemy--) {
+    for (var enemy = constants.ENEMY_NUM; enemy > 0; enemy--) {
         enemies[enemy] = new objects.Enemy();
         game.addChild(enemies[enemy]);
     }

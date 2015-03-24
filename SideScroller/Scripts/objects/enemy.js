@@ -22,8 +22,8 @@ var objects;
         };
         Enemy.prototype._reset = function () {
             //Set treasure to start at random y, outside of canvas
-            this.y = Math.floor(Math.random() * 450) + (this.height * 0.5);
-            this.x = Math.floor(Math.random() * 1000) + (800 + this.width);
+            this.y = Math.floor(Math.random() * constants.TREE_LINE) + (this.height * 0.5);
+            this.x = Math.floor(Math.random() * 1000) + (constants.SCREEN_WIDTH + this.width);
             this._dx = Math.floor((Math.random() * 5) + 10);
             this._dy = Math.floor((Math.random() * 5) - 2);
         };
@@ -32,7 +32,7 @@ var objects;
             if ((this.x + this.width) < 0 || (this.y + this.height) < 0) {
                 this._reset();
             }
-            if (this.y > 450) {
+            if (this.y > constants.TREE_LINE) {
                 this._dy = 0;
             }
         };

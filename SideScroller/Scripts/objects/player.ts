@@ -24,7 +24,7 @@
 
         //PRIVATE METHODS
         private _checkBounds() {
-            if (stage.mouseY > 450) {
+            if (stage.mouseY > constants.TREE_LINE) {
                 this.y = 450;
             }
 
