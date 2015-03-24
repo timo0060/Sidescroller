@@ -10,11 +10,7 @@ var objects;
         __extends(Player, _super);
         //CONSTRUCTOR --------------------------------------------------------------------------------------------------
         function Player() {
-            _super.call(this, assetLoader.getResult("helicopter"));
-            this.width = this.getBounds().width;
-            this.height = this.getBounds().height;
-            this.regX = this.width * 0.5;
-            this.regY = this.height * 0.5;
+            _super.call(this, "helicopter");
             this.x = 95;
         }
         //PUBLIC METHODS -----------------------------------------------------------------------------------------------
@@ -39,7 +35,7 @@ var objects;
             }
         };
         return Player;
-    })(createjs.Bitmap);
+    })(objects.GameObject);
     objects.Player = Player;
 })(objects || (objects = {}));
 //# sourceMappingURL=player.js.map

@@ -8,39 +8,28 @@ var objects;
 (function (objects) {
     var Background = (function (_super) {
         __extends(Background, _super);
-        //CONSTRUCTOR
+        //CONSTRUCTOR --------------------------------------------------------------------------------------------------
         function Background() {
-            _super.call(this);
-            //Private Variables
+            _super.call(this, assetLoader.getResult("background"));
             this._dx = 5;
-            this.backgroundOne = new createjs.Bitmap("assets/images/background-first.png");
-            this.backgroundTwo = new createjs.Bitmap("assets/images/background-second.png");
-            this.backOneWidth = this.backgroundOne.getBounds().width;
-            this.backTwoWidth = this.backgroundTwo.getBounds().width;
-            this.backOneX = 0;
-            this.backTwoX = this.backOneWidth;
-            this.backgroundOne.y = 0;
-            this.backgroundTwo.y = 0;
-            this.backgroundOne.x = this.backOneX;
-            this.backgroundTwo.x = this.backTwoX;
+            this._reset();
         }
+        //PUBLIC METHODS -----------------------------------------------------------------------------------------------
         Background.prototype.update = function () {
-            this.backOneX -= this._dx;
-            this.backTwoX -= this._dx;
-            this.backgroundOne.x = this.backOneX;
-            this.backgroundTwo.x = this.backTwoX;
-            this._checkbounds();
+            this.x -= this._dx;
+            this._checkBounds();
         };
-        Background.prototype._checkbounds = function () {
-            if ((this.backOneX + this.backOneWidth) < 0) {
-                this.backOneX = this.backTwoX + this.backTwoWidth;
-            }
-            if ((this.backTwoX + this.backTwoWidth) < 0) {
-                this.backTwoX = this.backOneX + this.backOneWidth;
+        Background.prototype._reset = function () {
+            this.y = 0;
+            this.x = 0;
+        };
+        Background.prototype._checkBounds = function () {
+            if (this.x <= -4000) {
+                this._reset();
             }
         };
         return Background;
-    })(createjs.Container);
+    })(createjs.Bitmap);
     objects.Background = Background;
 })(objects || (objects = {}));
 //# sourceMappingURL=background.js.map

@@ -6,7 +6,7 @@
 /// <reference path="typings/soundjs/soundjs.d.ts" />
 
 /// <reference path="objects/gameobject.ts" />
-
+/// <reference path="objects/background.ts" />
 /// <reference path="objects/enemy.ts" />
 /// <reference path="objects/treasure.ts" />
 /// <reference path="objects/player.ts" />
@@ -17,13 +17,11 @@ var stats: Stats = new Stats();
 var canvas;
 var stage: createjs.Stage;
 var game: createjs.Container;
-var backgroundSpeed = 5;
 
 //Game Objects
 var helicopter: objects.Player;
 var treasure: objects.Treasure;
-var backgroundFirst: createjs.Bitmap;
-var backgroundSecond: createjs.Bitmap;
+var background: objects.Background;
 var enemies: objects.Enemy[] = [];
 
 
@@ -36,7 +34,8 @@ var manifest = [
     { id: "backgroundfirst", src: "assets/images/background-first.png" },
     { id: "backgroundsecond", src: "assets/images/background-second.png" },
     { id: "treasure", src: "assets/images/treasure.png" },
-    { id: "enemy", src: "assets/images/enemy.png"}
+    { id: "enemy", src: "assets/images/enemy.png" },
+    { id: "background", src: "assets/images/background.png"}
 ];
 //This function is used to preload all of the assets
 function preload() {
@@ -94,7 +93,7 @@ function checkCollision(collider:objects.GameObject) {
 function gameLoop() {
     stats.begin(); //Begin metering
 
-    updateBackground();
+    background.update();
     helicopter.update();
     treasure.update();
     
@@ -102,69 +101,34 @@ function gameLoop() {
         enemies[enemy].update();
         checkCollision(enemies[enemy]);
     }
+    
+    checkCollision(helicopter);
 
-    readdObjects();
     stage.update();
-    checkCollision();
 
     stats.end(); // End metering
 }
 
-function updateBackground() {
-    backgroundFirst.x -= backgroundSpeed;
-    backgroundSecond.x -= backgroundSpeed;
 
-    if ((backgroundFirst.x + backgroundFirst.getBounds().width) < 0) {
-        backgroundFirst.x += 4800 + backgroundSecond.x;
-        stage.removeChild(backgroundFirst);
-        stage.addChild(backgroundFirst);
-    }
-
-    if ((backgroundSecond.x + backgroundSecond.getBounds().width) < 0) {
-        backgroundSecond.x += 4800 + backgroundFirst.x;
-        stage.addChild(backgroundFirst);
-    }
-
-}
-
-function readdObjects() {    
-    stage.removeChild(treasure);
-    stage.removeChild(helicopter);
-
-    stage.addChild(treasure);
-
-    for (var enemy = 3; enemy > 0; enemy--) {
-        stage.removeChild(enemies[enemy]);
-        stage.addChild(enemies[enemy]);
-    }
-
-    stage.addChild(helicopter);
-}
 
 function main() {
 
     game = new createjs.Container();
 
-    backgroundFirst = new createjs.Bitmap("assets/images/background-first.png");
-    backgroundSecond = new createjs.Bitmap("assets/images/background-second.png");
-
-    backgroundFirst.y = 0;
-    backgroundSecond.y = 0;
-    backgroundFirst.x = 0;
-    backgroundSecond.x = 2400;
-
-    stage.addChild(backgroundFirst);
-    stage.addChild(backgroundSecond);
+    background = new objects.Background();
+    game.addChild(background);
     
     treasure = new objects.Treasure();
-    stage.addChild(treasure);
+    game.addChild(treasure);
 
     for (var enemy = 3; enemy > 0; enemy--) {
         enemies[enemy] = new objects.Enemy();
-        stage.addChild(enemies[enemy]);
+        game.addChild(enemies[enemy]);
     }
 
     helicopter = new objects.Player();
-    stage.addChild(helicopter);
+    game.addChild(helicopter);
+
+    stage.addChild(game);
 
 }

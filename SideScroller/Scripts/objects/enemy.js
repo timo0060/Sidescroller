@@ -20,7 +20,6 @@ var objects;
             this.y -= this._dy;
             this._checkBounds();
         };
-        //PRIVATE METHODS
         Enemy.prototype._reset = function () {
             //Set treasure to start at random y, outside of canvas
             this.y = Math.floor(Math.random() * 450) + (this.height * 0.5);

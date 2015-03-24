@@ -1,22 +1,12 @@
 ﻿module objects {
 
-    export class Player extends createjs.Bitmap {
-
-        //Public Variables
-        public width: number;
-        public height: number;
-
+    export class Player extends objects.GameObject {
 
         //CONSTRUCTOR --------------------------------------------------------------------------------------------------
 
         constructor() {
-            super(assetLoader.getResult("helicopter"));
+            super("helicopter");
 
-            this.width = this.getBounds().width;
-            this.height = this.getBounds().height;
-
-            this.regX = this.width * 0.5;
-            this.regY = this.height * 0.5;
 
             this.x = 95;
 
@@ -30,7 +20,6 @@
 
             this._checkBounds();
         }
-
 
 
         //PRIVATE METHODS

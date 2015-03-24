@@ -24,7 +24,7 @@
         }
 
 
-        //PRIVATE METHODS
+        
         private _reset() {
             //Set treasure to start at random y, outside of canvas
             this.y = Math.floor(Math.random() * 450) + (this.height * 0.5);
