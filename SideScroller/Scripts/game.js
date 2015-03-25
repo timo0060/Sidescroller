@@ -4,12 +4,18 @@
 /// <reference path="typings/preloadjs/preloadjs.d.ts" />
 /// <reference path="typings/stats/stats.d.ts" />
 /// <reference path="typings/soundjs/soundjs.d.ts" />
+/// <reference path="states/gameover.ts" />
 /// <reference path="states/play.ts" />
 //global variables
 var stats = new Stats();
 var canvas;
 var stage;
+//State Variables
+var currentState;
+var currentStateFunction;
+var stateChanged = false;
 //Game Objects
+var gameover;
 var play;
 //Look at the slot machine Button object to put background the way I want (getImage)
 var assetLoader;
@@ -39,7 +45,8 @@ function init() {
     createjs.Ticker.setFPS(60);
     createjs.Ticker.addEventListener("tick", gameLoop);
     setStats();
-    main();
+    currentState = constants.PLAY_STATE;
+    changeState(currentState);
 }
 function setStats() {
     stats.setMode(0);
@@ -50,12 +57,30 @@ function setStats() {
 }
 function gameLoop() {
     stats.begin(); //Begin metering
-    play.update();
+    currentStateFunction.update();
+    if (stateChanged) {
+        changeState(currentState);
+    }
     stage.update();
     stats.end(); // End metering
 }
-function main() {
-    //Instantiate play state somewhere
-    play = new states.Play();
+function changeState(state) {
+    switch (state) {
+        case constants.MENU_STATE:
+            stateChanged = false;
+            break;
+        case constants.PLAY_STATE:
+            stateChanged = false;
+            //Instantiate play state
+            play = new states.Play();
+            currentStateFunction = play;
+            break;
+        case constants.GAME_OVER_STATE:
+            stateChanged = false;
+            //Instantiate Game Over state
+            gameover = new states.GameOver();
+            currentStateFunction = gameover;
+            break;
+    }
 }
 //# sourceMappingURL=game.js.map

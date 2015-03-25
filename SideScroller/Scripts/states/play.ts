@@ -107,6 +107,8 @@ module states {
                 createjs.Sound.stop();
                 this.game.removeAllChildren();
                 stage.removeAllChildren();
+                currentState = constants.GAME_OVER_STATE;
+                stateChanged = true;
             }
         }//End of Update Function
 

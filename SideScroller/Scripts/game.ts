@@ -5,6 +5,8 @@
 /// <reference path="typings/stats/stats.d.ts" />
 /// <reference path="typings/soundjs/soundjs.d.ts" />
 
+
+/// <reference path="states/gameover.ts" />
 /// <reference path="states/play.ts" />
 
 
@@ -13,7 +15,13 @@ var stats: Stats = new Stats();
 var canvas;
 var stage: createjs.Stage;
 
+//State Variables
+var currentState: number;
+var currentStateFunction: any;
+var stateChanged: boolean = false;
+
 //Game Objects
+var gameover: states.GameOver;
 var play: states.Play;
 
 //Look at the slot machine Button object to put background the way I want (getImage)
@@ -48,7 +56,9 @@ function init() {
 
     setStats();
 
-    main();
+    currentState = constants.PLAY_STATE;
+
+    changeState(currentState);
 }
 
 function setStats() {
@@ -64,8 +74,11 @@ function gameLoop() {
 
     stats.begin(); //Begin metering
 
-    play.update();
+    currentStateFunction.update();
 
+    if (stateChanged) {
+        changeState(currentState);
+    }
 
     stage.update();
 
@@ -74,8 +87,26 @@ function gameLoop() {
 
 
 
-function main() {
+function changeState(state: number) {
 
-    //Instantiate play state somewhere
-    play = new states.Play();
+
+    switch (state){
+        case constants.MENU_STATE:
+            stateChanged = false;
+            break;
+
+        case constants.PLAY_STATE:
+            stateChanged = false;
+            //Instantiate play state
+            play = new states.Play();
+            currentStateFunction = play;
+            break;
+
+        case constants.GAME_OVER_STATE:
+            stateChanged = false;
+            //Instantiate Game Over state
+            gameover = new states.GameOver();
+            currentStateFunction = gameover;
+            break;
+    }
 }

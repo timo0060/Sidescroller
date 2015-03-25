@@ -103,6 +103,7 @@
     <TypeScriptCompile Include="Scripts\objects\player.ts" />
     <TypeScriptCompile Include="Scripts\objects\scoreboard.ts" />
     <TypeScriptCompile Include="Scripts\objects\treasure.ts" />
+    <TypeScriptCompile Include="Scripts\states\gameover.ts" />
     <TypeScriptCompile Include="Scripts\states\play.ts" />
     <TypeScriptCompile Include="Scripts\typings\createjs-lib\createjs-lib.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\easeljs\easeljs.d.ts" />
