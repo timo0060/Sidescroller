@@ -3,7 +3,7 @@ var objects;
     //SCOREBOARD CLASS ---------------------------------------------------------------------------
     var Scoreboard = (function () {
         //CONSTRUCTOR ----------------------------------------------------------------------------
-        function Scoreboard() {
+        function Scoreboard(game) {
             this.lives = constants.PLAYER_LIVES;
             this.score = 0;
             this._livesLabel = new createjs.Text("LIVES: ", constants.FONT_SIZE + " " + constants.FONT_FAMILY, constants.FONT_COLOUR);

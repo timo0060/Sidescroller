@@ -13,6 +13,7 @@ var objects;
             _super.call(this, "enemy");
             this.name = "enemy";
             //Add sound here---- See treasure for example
+            this.soundString = "explosion";
             this._reset();
         }
         //PUBLIC METHODS -----------------------------------------------------------------------------------------------

@@ -5,32 +5,16 @@
 /// <reference path="typings/stats/stats.d.ts" />
 /// <reference path="typings/soundjs/soundjs.d.ts" />
 
-/// <reference path="constants.ts" />
-/// <reference path="objects/gameobject.ts" />
-/// <reference path="objects/background.ts" />
-/// <reference path="objects/enemy.ts" />
-/// <reference path="objects/treasure.ts" />
-/// <reference path="objects/player.ts" />
-/// <reference path="objects/label.ts" />
-/// <reference path="objects/button.ts" />
-/// <reference path="objects/scoreboard.ts" />
+/// <reference path="states/play.ts" />
 
 
 //global variables
 var stats: Stats = new Stats();
 var canvas;
 var stage: createjs.Stage;
-var game: createjs.Container;
 
 //Game Objects
-var helicopter: objects.Player;
-var treasure: objects.Treasure;
-var background: objects.Background;
-var enemies: objects.Enemy[] = [];
-
-//Text Objects
-var scoreboard: objects.Scoreboard;
-
+var play: states.Play;
 
 //Look at the slot machine Button object to put background the way I want (getImage)
 
@@ -42,7 +26,10 @@ var manifest = [
     { id: "backgroundsecond", src: "assets/images/background-second.png" },
     { id: "treasure", src: "assets/images/treasure.png" },
     { id: "enemy", src: "assets/images/enemy.png" },
-    { id: "background", src: "assets/images/background.png"}
+    { id: "background", src: "assets/images/background.png" },
+    { id: "explosion", src: "assets/audio/explosion.mp3" },
+    { id: "helicopterSound", src: "assets/audio/helicopter.mp3" },
+    { id: "pickupTreasure", src: "assets/audio/pickup.wav"}
 ];
 //This function is used to preload all of the assets
 function preload() {
@@ -71,62 +58,14 @@ function setStats() {
     stats.domElement.style.top = '0px';
     document.body.appendChild(stats.domElement);
 }
-//Calculates the distance between two points
-function getDistance(p1: createjs.Point, p2: createjs.Point):number {
 
-    return Math.floor(Math.sqrt(Math.pow((p2.x - p1.x), 2) + Math.pow((p2.y - p1.y), 2)));
-}
-
-function checkCollision(collider:objects.GameObject) {
-    var p1: createjs.Point = new createjs.Point();
-    var p2: createjs.Point = new createjs.Point();
-
-    p1.x = helicopter.x;
-    p1.y = helicopter.y;
-
-    p2.x = collider.x;
-    p2.y = collider.y;
-
-    if (getDistance(p1, p2) < ((helicopter.height * 0.5) + (collider.height * 0.5))) {
-        if (!collider.isColliding) {
-            console.log("Collision");
-            collider.isColliding = true;
-            switch (collider.name){
-                case "treasure":
-                    scoreboard.score += 100;
-                    break;
-                case "enemy":
-                    scoreboard.lives -= 1;
-                    break;
-            }
-        }
-    } else {
-        collider.isColliding = false;
-    }
-}
 
 function gameLoop() {
+
     stats.begin(); //Begin metering
 
-    background.update();
-    helicopter.update();
-    treasure.update();
-    
-    if (scoreboard.lives > 0){
-        for (var enemy = constants.ENEMY_NUM; enemy > 0; enemy--) {
-            enemies[enemy].update();
-            checkCollision(enemies[enemy]);
-        }
+    play.update();
 
-        checkCollision(treasure);
-    }
-    scoreboard.update();
-
-    if (scoreboard.lives < 1) {
-        createjs.Sound.stop();
-        game.removeAllChildren();
-        stage.removeAllChildren();
-    }
 
     stage.update();
 
@@ -137,24 +76,6 @@ function gameLoop() {
 
 function main() {
 
-    game = new createjs.Container();
-
-    background = new objects.Background();
-    game.addChild(background);
-    
-    treasure = new objects.Treasure();
-    game.addChild(treasure);
-
-    for (var enemy = constants.ENEMY_NUM; enemy > 0; enemy--) {
-        enemies[enemy] = new objects.Enemy();
-        game.addChild(enemies[enemy]);
-    }
-
-    helicopter = new objects.Player();
-    game.addChild(helicopter);
-
-    scoreboard = new objects.Scoreboard();
-
-    stage.addChild(game);
-
+    //Instantiate play state somewhere
+    play = new states.Play();
 }

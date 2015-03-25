@@ -67,6 +67,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\audio\explosion.mp3" />
+    <Content Include="assets\audio\helicopter.mp3" />
+    <Content Include="assets\audio\pickup.wav" />
     <Content Include="assets\images\background.png" />
     <Content Include="assets\images\enemy.png" />
     <Content Include="assets\images\helicopter.png" />
@@ -87,7 +90,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="assets\audio\" />
     <Folder Include="assets\fonts\" />
   </ItemGroup>
   <ItemGroup>
@@ -101,6 +103,7 @@
     <TypeScriptCompile Include="Scripts\objects\player.ts" />
     <TypeScriptCompile Include="Scripts\objects\scoreboard.ts" />
     <TypeScriptCompile Include="Scripts\objects\treasure.ts" />
+    <TypeScriptCompile Include="Scripts\states\play.ts" />
     <TypeScriptCompile Include="Scripts\typings\createjs-lib\createjs-lib.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\easeljs\easeljs.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\preloadjs\preloadjs.d.ts" />

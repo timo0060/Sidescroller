@@ -14,6 +14,7 @@ var objects;
             this.name = "player";
             this.x = 95;
             //Play sound here for the engine
+            this.soundString = "helicopterSound";
         }
         //PUBLIC METHODS -----------------------------------------------------------------------------------------------
         Player.prototype.update = function () {

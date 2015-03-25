@@ -14,7 +14,7 @@ var objects;
             this.name = "treasure";
             this._dx = 5;
             //Put sound here, Example (Declare audio in assetManager):
-            //this.soundString="yay";
+            this.soundString = "pickupTreasure";
             this._reset();
         }
         //PUBLIC METHODS -----------------------------------------------------------------------------------------------

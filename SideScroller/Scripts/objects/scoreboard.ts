@@ -9,9 +9,10 @@
         //Private Variables ----------------------------------------------------------------------
         _livesLabel: createjs.Text;
         _scoreLabel: createjs.Text;
+        private _game: createjs.Container;
 
         //CONSTRUCTOR ----------------------------------------------------------------------------
-        constructor() {
+        constructor(game: createjs.Container) {
 
             this.lives = constants.PLAYER_LIVES;
             this.score = 0;
