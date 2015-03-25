@@ -8,7 +8,7 @@
 
         constructor() {
             super("enemy");
-
+            this.name = "enemy";
             //Add sound here---- See treasure for example
 
             this._reset();

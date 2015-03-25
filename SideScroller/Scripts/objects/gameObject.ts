@@ -7,6 +7,7 @@
         public height: number;
         public isColliding: boolean;
         public soundString: string;
+        public name: string;
 
         //PRIVATE VARIABLES
         protected _dx;

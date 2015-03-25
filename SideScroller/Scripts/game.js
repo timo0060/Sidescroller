@@ -10,7 +10,9 @@
 /// <reference path="objects/enemy.ts" />
 /// <reference path="objects/treasure.ts" />
 /// <reference path="objects/player.ts" />
+/// <reference path="objects/label.ts" />
 /// <reference path="objects/button.ts" />
+/// <reference path="objects/scoreboard.ts" />
 //global variables
 var stats = new Stats();
 var canvas;
@@ -21,6 +23,8 @@ var helicopter;
 var treasure;
 var background;
 var enemies = [];
+//Text Objects
+var scoreboard;
 //Look at the slot machine Button object to put background the way I want (getImage)
 var assetLoader;
 //Define the manifest with all the game assets
@@ -70,6 +74,14 @@ function checkCollision(collider) {
         if (!collider.isColliding) {
             console.log("Collision");
             collider.isColliding = true;
+            switch (collider.name) {
+                case "treasure":
+                    scoreboard.score += 100;
+                    break;
+                case "enemy":
+                    scoreboard.lives -= 1;
+                    break;
+            }
         }
     }
     else {
@@ -81,11 +93,19 @@ function gameLoop() {
     background.update();
     helicopter.update();
     treasure.update();
-    for (var enemy = constants.ENEMY_NUM; enemy > 0; enemy--) {
-        enemies[enemy].update();
-        checkCollision(enemies[enemy]);
+    if (scoreboard.lives > 0) {
+        for (var enemy = constants.ENEMY_NUM; enemy > 0; enemy--) {
+            enemies[enemy].update();
+            checkCollision(enemies[enemy]);
+        }
+        checkCollision(treasure);
     }
-    checkCollision(helicopter);
+    scoreboard.update();
+    if (scoreboard.lives < 1) {
+        createjs.Sound.stop();
+        game.removeAllChildren();
+        stage.removeAllChildren();
+    }
     stage.update();
     stats.end(); // End metering
 }
@@ -101,6 +121,7 @@ function main() {
     }
     helicopter = new objects.Player();
     game.addChild(helicopter);
+    scoreboard = new objects.Scoreboard();
     stage.addChild(game);
 }
 //# sourceMappingURL=game.js.map

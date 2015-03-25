@@ -6,9 +6,11 @@
 
         constructor() {
             super("helicopter");
-
+            this.name = "player";
 
             this.x = 95;
+
+            //Play sound here for the engine
 
         }
 

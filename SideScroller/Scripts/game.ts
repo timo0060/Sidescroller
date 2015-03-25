@@ -11,7 +11,9 @@
 /// <reference path="objects/enemy.ts" />
 /// <reference path="objects/treasure.ts" />
 /// <reference path="objects/player.ts" />
+/// <reference path="objects/label.ts" />
 /// <reference path="objects/button.ts" />
+/// <reference path="objects/scoreboard.ts" />
 
 
 //global variables
@@ -25,6 +27,9 @@ var helicopter: objects.Player;
 var treasure: objects.Treasure;
 var background: objects.Background;
 var enemies: objects.Enemy[] = [];
+
+//Text Objects
+var scoreboard: objects.Scoreboard;
 
 
 //Look at the slot machine Button object to put background the way I want (getImage)
@@ -86,6 +91,14 @@ function checkCollision(collider:objects.GameObject) {
         if (!collider.isColliding) {
             console.log("Collision");
             collider.isColliding = true;
+            switch (collider.name){
+                case "treasure":
+                    scoreboard.score += 100;
+                    break;
+                case "enemy":
+                    scoreboard.lives -= 1;
+                    break;
+            }
         }
     } else {
         collider.isColliding = false;
@@ -99,12 +112,21 @@ function gameLoop() {
     helicopter.update();
     treasure.update();
     
-    for (var enemy = constants.ENEMY_NUM; enemy > 0; enemy--){
-        enemies[enemy].update();
-        checkCollision(enemies[enemy]);
+    if (scoreboard.lives > 0){
+        for (var enemy = constants.ENEMY_NUM; enemy > 0; enemy--) {
+            enemies[enemy].update();
+            checkCollision(enemies[enemy]);
+        }
+
+        checkCollision(treasure);
     }
-    
-    checkCollision(helicopter);
+    scoreboard.update();
+
+    if (scoreboard.lives < 1) {
+        createjs.Sound.stop();
+        game.removeAllChildren();
+        stage.removeAllChildren();
+    }
 
     stage.update();
 
@@ -130,6 +152,8 @@ function main() {
 
     helicopter = new objects.Player();
     game.addChild(helicopter);
+
+    scoreboard = new objects.Scoreboard();
 
     stage.addChild(game);
 

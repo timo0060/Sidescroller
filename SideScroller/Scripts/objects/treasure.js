@@ -11,6 +11,7 @@ var objects;
         //CONSTRUCTOR --------------------------------------------------------------------------------------------------
         function Treasure() {
             _super.call(this, "treasure");
+            this.name = "treasure";
             this._dx = 5;
             //Put sound here, Example (Declare audio in assetManager):
             //this.soundString="yay";
