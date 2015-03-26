@@ -24,6 +24,7 @@ var states;
             this.resetButton = new objects.Button("resetButton", constants.SCREEN_CENTER_WIDTH, constants.SCREEN_CENTER_HEIGHT + 100);
             this.game.addChild(this.resetButton);
             this.resetButton.on("click", this.resetButtonClicked, this);
+            createjs.Sound.play("gameOver", { loop: -1 });
             stage.addChild(this.game);
         } //End of Constructor
         //PUBLIC METHODS ---------------------------------------------------------------------------

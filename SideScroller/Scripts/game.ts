@@ -48,7 +48,8 @@ var manifest = [
     { id: "explosion", src: "assets/audio/explosion.mp3" },
     { id: "helicopterSound", src: "assets/audio/helicopter.mp3" },
     { id: "pickupTreasure", src: "assets/audio/pickup.wav" },
-    { id: "theme", src: "assets/audio/theme.ogg"}
+    { id: "theme", src: "assets/audio/theme.ogg" },
+    { id: "gameOver", src: "assets/audio/gameOver.ogg" }
 ];
 //This function is used to preload all of the assets
 function preload() {

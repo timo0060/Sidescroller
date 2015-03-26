@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\audio\explosion.mp3" />
+    <Content Include="assets\audio\gameOver.ogg" />
     <Content Include="assets\audio\helicopter.mp3" />
     <Content Include="assets\audio\pickup.wav" />
     <Content Include="assets\audio\theme.ogg" />

@@ -41,6 +41,7 @@ module states {
 
             this.resetButton.on("click", this.resetButtonClicked, this);
 
+            createjs.Sound.play("gameOver", { loop: -1});
 
             stage.addChild(this.game);
         }//End of Constructor
