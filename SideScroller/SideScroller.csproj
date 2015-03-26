@@ -76,6 +76,7 @@
     <Content Include="assets\images\background-first.png" />
     <Content Include="assets\images\background-second.png" />
     <Content Include="assets\images\resetButton.png" />
+    <Content Include="assets\images\startButton.png" />
     <Content Include="assets\images\treasure.png" />
     <Content Include="css\game.css" />
     <Content Include="index.html" />
@@ -105,6 +106,7 @@
     <TypeScriptCompile Include="Scripts\objects\scoreboard.ts" />
     <TypeScriptCompile Include="Scripts\objects\treasure.ts" />
     <TypeScriptCompile Include="Scripts\states\gameover.ts" />
+    <TypeScriptCompile Include="Scripts\states\menu.ts" />
     <TypeScriptCompile Include="Scripts\states\play.ts" />
     <TypeScriptCompile Include="Scripts\typings\createjs-lib\createjs-lib.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\easeljs\easeljs.d.ts" />

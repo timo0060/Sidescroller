@@ -6,6 +6,7 @@
 /// <reference path="typings/soundjs/soundjs.d.ts" />
 /// <reference path="states/gameover.ts" />
 /// <reference path="states/play.ts" />
+/// <reference path="states/menu.ts" />
 //global variables
 var stats = new Stats();
 var canvas;
@@ -17,6 +18,7 @@ var stateChanged = false;
 //Game Objects
 var gameover;
 var play;
+var menu;
 //Score Variables
 var finalScore = 0;
 var highScore = 0;
@@ -31,6 +33,7 @@ var manifest = [
     { id: "enemy", src: "assets/images/enemy.png" },
     { id: "background", src: "assets/images/background.png" },
     { id: "resetButton", src: "assets/images/resetButton.png" },
+    { id: "startButton", src: "assets/images/startButton.png" },
     { id: "explosion", src: "assets/audio/explosion.mp3" },
     { id: "helicopterSound", src: "assets/audio/helicopter.mp3" },
     { id: "pickupTreasure", src: "assets/audio/pickup.wav" }
@@ -49,7 +52,7 @@ function init() {
     createjs.Ticker.setFPS(60);
     createjs.Ticker.addEventListener("tick", gameLoop);
     setStats();
-    currentState = constants.PLAY_STATE;
+    currentState = constants.MENU_STATE;
     changeState(currentState);
 }
 function setStats() {
@@ -72,6 +75,8 @@ function changeState(state) {
     switch (state) {
         case constants.MENU_STATE:
             stateChanged = false;
+            menu = new states.Menu();
+            currentStateFunction = menu;
             break;
         case constants.PLAY_STATE:
             stateChanged = false;

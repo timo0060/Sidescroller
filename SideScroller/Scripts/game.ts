@@ -8,6 +8,7 @@
 
 /// <reference path="states/gameover.ts" />
 /// <reference path="states/play.ts" />
+/// <reference path="states/menu.ts" />
 
 
 //global variables
@@ -23,6 +24,7 @@ var stateChanged: boolean = false;
 //Game Objects
 var gameover: states.GameOver;
 var play: states.Play;
+var menu: states.Menu;
 
 //Score Variables
 var finalScore: number = 0;
@@ -39,7 +41,8 @@ var manifest = [
     { id: "treasure", src: "assets/images/treasure.png" },
     { id: "enemy", src: "assets/images/enemy.png" },
     { id: "background", src: "assets/images/background.png" },
-    { id: "resetButton", src: "assets/images/resetButton.png"},
+    { id: "resetButton", src: "assets/images/resetButton.png" },
+    { id: "startButton", src: "assets/images/startButton.png"},
     { id: "explosion", src: "assets/audio/explosion.mp3" },
     { id: "helicopterSound", src: "assets/audio/helicopter.mp3" },
     { id: "pickupTreasure", src: "assets/audio/pickup.wav"}
@@ -61,7 +64,7 @@ function init() {
 
     setStats();
 
-    currentState = constants.PLAY_STATE;
+    currentState = constants.MENU_STATE;
 
     changeState(currentState);
 }
@@ -98,6 +101,8 @@ function changeState(state: number) {
     switch (state){
         case constants.MENU_STATE:
             stateChanged = false;
+            menu = new states.Menu();
+            currentStateFunction = menu;
             break;
 
         case constants.PLAY_STATE:
