@@ -10,7 +10,9 @@ var objects;
         __extends(Button, _super);
         // PRIVATE INSTANCE VARIABLES +++++++++++++++++++++++++++++++++++++++++++++++++
         function Button(buttonPath, x, y) {
-            _super.call(this, buttonPath);
+            _super.call(this, assetLoader.getResult(buttonPath));
+            this.regX = this.getBounds().width * 0.5;
+            this.regY = this.getBounds().height * 0.5;
             this.x = x;
             this.y = y;
             this.addEventListener("mouseover", this._buttonOver);

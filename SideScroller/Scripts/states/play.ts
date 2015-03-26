@@ -107,6 +107,10 @@ module states {
                 createjs.Sound.stop();
                 this.game.removeAllChildren();
                 stage.removeAllChildren();
+                finalScore = this.scoreboard.score;
+                if (finalScore > highScore){
+                    highScore = finalScore;
+                }
                 currentState = constants.GAME_OVER_STATE;
                 stateChanged = true;
             }

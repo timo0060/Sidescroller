@@ -17,6 +17,9 @@ var stateChanged = false;
 //Game Objects
 var gameover;
 var play;
+//Score Variables
+var finalScore = 0;
+var highScore = 0;
 //Look at the slot machine Button object to put background the way I want (getImage)
 var assetLoader;
 //Define the manifest with all the game assets
@@ -27,6 +30,7 @@ var manifest = [
     { id: "treasure", src: "assets/images/treasure.png" },
     { id: "enemy", src: "assets/images/enemy.png" },
     { id: "background", src: "assets/images/background.png" },
+    { id: "resetButton", src: "assets/images/resetButton.png" },
     { id: "explosion", src: "assets/audio/explosion.mp3" },
     { id: "helicopterSound", src: "assets/audio/helicopter.mp3" },
     { id: "pickupTreasure", src: "assets/audio/pickup.wav" }

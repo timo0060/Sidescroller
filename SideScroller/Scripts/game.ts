@@ -24,6 +24,10 @@ var stateChanged: boolean = false;
 var gameover: states.GameOver;
 var play: states.Play;
 
+//Score Variables
+var finalScore: number = 0;
+var highScore: number = 0;
+
 //Look at the slot machine Button object to put background the way I want (getImage)
 
 var assetLoader: createjs.LoadQueue;
@@ -35,6 +39,7 @@ var manifest = [
     { id: "treasure", src: "assets/images/treasure.png" },
     { id: "enemy", src: "assets/images/enemy.png" },
     { id: "background", src: "assets/images/background.png" },
+    { id: "resetButton", src: "assets/images/resetButton.png"},
     { id: "explosion", src: "assets/audio/explosion.mp3" },
     { id: "helicopterSound", src: "assets/audio/helicopter.mp3" },
     { id: "pickupTreasure", src: "assets/audio/pickup.wav"}

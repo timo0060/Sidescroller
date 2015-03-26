@@ -75,6 +75,7 @@
     <Content Include="assets\images\helicopter.png" />
     <Content Include="assets\images\background-first.png" />
     <Content Include="assets\images\background-second.png" />
+    <Content Include="assets\images\resetButton.png" />
     <Content Include="assets\images\treasure.png" />
     <Content Include="css\game.css" />
     <Content Include="index.html" />
