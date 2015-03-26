@@ -20,6 +20,8 @@ var states;
             this.startButton = new objects.Button("startButton", constants.SCREEN_CENTER_WIDTH, constants.SCREEN_CENTER_HEIGHT + 100);
             this.game.addChild(this.startButton);
             this.startButton.on("click", this.startButtonClicked, this);
+            var theme = assetLoader.getResult("theme");
+            createjs.Sound.play("theme", { loop: -1 });
             stage.addChild(this.game);
         } //End of Constructor
         //PUBLIC METHODS ---------------------------------------------------------------------------

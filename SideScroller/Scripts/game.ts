@@ -20,11 +20,13 @@ var stage: createjs.Stage;
 var currentState: number;
 var currentStateFunction: any;
 var stateChanged: boolean = false;
+var theme: string;
 
-//Game Objects
+//Game States
 var gameover: states.GameOver;
 var play: states.Play;
 var menu: states.Menu;
+
 
 //Score Variables
 var finalScore: number = 0;
@@ -45,7 +47,8 @@ var manifest = [
     { id: "startButton", src: "assets/images/startButton.png"},
     { id: "explosion", src: "assets/audio/explosion.mp3" },
     { id: "helicopterSound", src: "assets/audio/helicopter.mp3" },
-    { id: "pickupTreasure", src: "assets/audio/pickup.wav"}
+    { id: "pickupTreasure", src: "assets/audio/pickup.wav" },
+    { id: "theme", src: "assets/audio/theme.ogg"}
 ];
 //This function is used to preload all of the assets
 function preload() {

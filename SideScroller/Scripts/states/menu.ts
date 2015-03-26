@@ -35,6 +35,10 @@ module states {
 
             this.startButton.on("click", this.startButtonClicked, this);
 
+            var theme = assetLoader.getResult("theme");
+
+            createjs.Sound.play("theme", { loop: -1 });
+
 
             stage.addChild(this.game);
         }//End of Constructor

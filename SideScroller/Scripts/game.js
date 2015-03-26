@@ -15,7 +15,8 @@ var stage;
 var currentState;
 var currentStateFunction;
 var stateChanged = false;
-//Game Objects
+var theme;
+//Game States
 var gameover;
 var play;
 var menu;
@@ -36,7 +37,8 @@ var manifest = [
     { id: "startButton", src: "assets/images/startButton.png" },
     { id: "explosion", src: "assets/audio/explosion.mp3" },
     { id: "helicopterSound", src: "assets/audio/helicopter.mp3" },
-    { id: "pickupTreasure", src: "assets/audio/pickup.wav" }
+    { id: "pickupTreasure", src: "assets/audio/pickup.wav" },
+    { id: "theme", src: "assets/audio/theme.ogg" }
 ];
 //This function is used to preload all of the assets
 function preload() {
